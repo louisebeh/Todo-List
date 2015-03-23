@@ -8,7 +8,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(request, response) {
-  response.render('main');
+  response.render('main.ejs');
 });
 
 server.listen(port, function(){
