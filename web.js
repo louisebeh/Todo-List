@@ -1,7 +1,18 @@
-var gzippo = require('gzippo');
 var express = require('express');
 var app = express();
+var server = require('http').createServer(app);
 
-app.use(express.logger('dev'));
-app.use(gzippo.staticGzip("" + __dirname + "/dist"));
-app.listen(process.env.PORT || 5000);
+var port = process.env.PORT || 8080;
+
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
+
+app.get('/', function(request, response) {
+  response.render('index');
+});
+
+server.listen(port, function(){
+  console.log("server listening on port " + port);
+});
+
+module.exports = server;
